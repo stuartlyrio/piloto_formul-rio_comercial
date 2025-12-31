@@ -1,22 +1,186 @@
-:root { --primary: #2563eb; --error: #dc3545; --success: #28a745; --bg: #f8fafc; }
-body { font-family: 'Segoe UI', sans-serif; background-color: var(--bg); padding: 20px; }
-.container { max-width: 850px; margin: 0 auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
-h1 { color: var(--primary); margin-bottom: 5px; }
-.subtitle { color: #64748b; margin-bottom: 25px; }
-fieldset { border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; margin-bottom: 20px; }
-legend { font-weight: bold; color: var(--primary); padding: 0 10px; }
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+:root {
+    --primary: #ff6600; /* Laranja da Logo */
+    --primary-hover: #e65c00;
+    --bg-page: #121212; /* Fundo quase preto */
+    --bg-card: #1e1e1e; /* Fundo do cartão cinza escuro */
+    --text-main: #ffffff;
+    --text-muted: #b0b0b0;
+    --input-bg: #2c2c2c;
+    --input-border: #444444;
+    --error: #ff4444;
+    --success: #00c851;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--bg-page);
+    color: var(--text-main);
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    background: var(--bg-card);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(255, 102, 0, 0.1); /* Brilho laranja sutil */
+    border-top: 5px solid var(--primary);
+}
+
+.header-logo {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.header-logo img {
+    max-height: 80px; /* Ajuste o tamanho da logo aqui */
+    max-width: 100%;
+}
+
+h1 {
+    color: var(--primary);
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+    font-size: 0.9rem;
+}
+
+fieldset {
+    border: 1px solid var(--input-border);
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 25px;
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+legend {
+    font-weight: bold;
+    color: var(--primary);
+    padding: 0 10px;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+}
+
 .row { display: flex; gap: 15px; margin-bottom: 15px; flex-wrap: wrap; }
-.input-group { flex: 1; min-width: 200px; position: relative; }
+.input-group { flex: 1; min-width: 200px; }
 .full { flex: 100%; }
+.half { flex: 2; }
 .small { flex: 0 0 100px; }
-label { display: block; font-size: 12px; font-weight: bold; margin-bottom: 5px; color: #475569; }
-input[type="text"], input[type="email"], input[type="tel"], input[type="date"] { width: 100%; padding: 10px; border: 2px solid #e2e8f0; border-radius: 6px; outline: none; transition: 0.3s; box-sizing: border-box;}
-input.invalid { border-color: var(--error); background-color: #fff5f5; }
+
+label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+/* Estilo moderno dos inputs */
+input[type="text"], input[type="email"], input[type="tel"], input[type="date"] {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 6px;
+    color: white;
+    font-size: 1rem;
+    transition: 0.3s;
+    outline: none;
+    box-sizing: border-box;
+}
+
+input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 8px rgba(255, 102, 0, 0.3);
+}
+
+/* Validação Visual */
+input.invalid { border-color: var(--error); background-color: rgba(255, 68, 68, 0.1); }
 input.valid { border-color: var(--success); }
-.error-msg { color: var(--error); font-size: 11px; margin-top: 4px; display: block; height: 12px; }
-.radio-group { display: flex; gap: 15px; margin-bottom: 20px; padding: 10px 0; flex-wrap: wrap;}
-.radio-group label { font-weight: normal; display: flex; align-items: center; gap: 5px; cursor: pointer; }
-.lgpd-box { background: #f1f5f9; padding: 15px; border-radius: 8px; font-size: 13px; border-left: 5px solid var(--primary); margin-bottom: 20px;}
-button { width: 100%; padding: 18px; background: #25d366; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s;}
-button:hover { background: #128c7e; transform: translateY(-2px); }
-@media (max-width: 600px) { .row { flex-direction: column; } .small { flex: 1; } }
+.error-msg { color: var(--error); font-size: 0.75rem; margin-top: 5px; display: block; font-weight: bold; }
+
+/* Botões de Rádio Customizados */
+.radio-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.radio-box {
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    flex: 1;
+    text-align: center;
+    transition: 0.2s;
+    font-size: 0.9rem;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.radio-box:hover { border-color: var(--primary); }
+/* Quando selecionado (truque CSS) */
+.radio-box:has(input:checked) {
+    background-color: var(--primary);
+    color: white;
+    border-color: var(--primary);
+    font-weight: bold;
+}
+
+.lgpd-box {
+    background: rgba(255, 102, 0, 0.1); /* Laranja bem transparente */
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    border-left: 4px solid var(--primary);
+    margin-bottom: 25px;
+    color: #ddd;
+}
+
+button {
+    width: 100%;
+    padding: 18px;
+    background: linear-gradient(45deg, #ff6600, #ff8533);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-transform: uppercase;
+    box-shadow: 0 4px 15px rgba(255, 102, 0, 0.4);
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 102, 0, 0.6);
+    background: linear-gradient(45deg, #e65c00, #ff6600);
+}
+
+@media (max-width: 600px) {
+    .container { padding: 20px; }
+    .row { flex-direction: column; }
+    .small { flex: 1; }
+    .radio-box { min-width: 45%; }
+}

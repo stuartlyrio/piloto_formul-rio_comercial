@@ -1,4 +1,4 @@
-// Funções de Validação Algorítmica
+// --- VALIDAÇÃO CPF E IDADE ---
 function validarCPF(cpf) {
     cpf = cpf.replace(/\D/g, '');
     if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) return false;
@@ -23,7 +23,7 @@ function validarIdade(data) {
     return idade >= 18;
 }
 
-// Máscaras de Input
+// --- MÁSCARAS ---
 const masks = {
     cpf: v => v.replace(/\D/g, '').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d{1,2})/, '$1-$2').replace(/(-\d{2})\d+?$/, '$1'),
     tel: v => v.replace(/\D/g, '').replace(/(\d{2})(\d)/, '($1) $2').replace(/(\d{5})(\d)/, '$1-$2').replace(/(-\d{4})\d+?$/, '$1'),
@@ -50,27 +50,33 @@ document.querySelectorAll('input').forEach(input => {
             const isAdult = validarIdade(val);
             e.target.classList.toggle('invalid', !isAdult);
             e.target.classList.toggle('valid', isAdult);
-            document.getElementById('date-error').innerText = isAdult ? "" : "Menor de 18 anos";
+            document.getElementById('date-error').innerText = isAdult ? "" : "Titular deve ser maior de 18 anos";
         }
     });
 });
 
-// Busca CEP
+// --- BUSCA CEP ---
 document.getElementById('cep').addEventListener('blur', function() {
     const cep = this.value.replace(/\D/g, '');
     if (cep.length === 8) {
+        // Feedback visual de carregamento
+        document.getElementById('endereco').value = "Buscando...";
+        
         fetch(`https://viacep.com.br/ws/${cep}/json/`).then(r => r.json()).then(d => {
             if (!d.erro) {
                 document.getElementById('endereco').value = d.logradouro;
                 document.getElementById('bairro').value = d.bairro;
                 document.getElementById('cidade').value = d.localidade;
                 document.getElementById('numero').focus();
+            } else {
+                document.getElementById('endereco').value = "";
+                alert("CEP não encontrado.");
             }
         });
     }
 });
 
-// ENVIO PARA WHATSAPP
+// --- ENVIO WHATSAPP ---
 document.getElementById('registrationForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
@@ -78,38 +84,36 @@ document.getElementById('registrationForm').addEventListener('submit', function(
     const nasc = document.getElementById('nascimento').value;
 
     if (!validarCPF(cpf) || !validarIdade(nasc)) {
-        alert("Corrija os erros destacados antes de enviar.");
+        alert("Por favor, corrija os campos em vermelho antes de enviar.");
         return;
     }
 
-    // Coleta dos dados para a mensagem
     const f = new FormData(this);
     const d = Object.fromEntries(f.entries());
 
-    // Formatação da Mensagem conforme sua solicitação
-    let mensagem = `*SOLICITAÇÃO DE NOVO CADASTRO*\n\n`;
-    mensagem += `📌NOME: ${d.nome}\n`;
-    mensagem += `📌CPF: ${d.cpf}\n`;
-    mensagem += `📌DATA DE NASCIMENTO: ${d.nascimento.split('-').reverse().join('/')}\n`;
-    mensagem += `📌E-MAIL: ${d.email}\n`;
-    mensagem += `📌TELEFONE 1: ${d.tel1}\n`;
-    mensagem += `📌TELEFONE 2: ${d.tel2 || 'Não informado'}\n`;
-    mensagem += `📌CEP: ${d.cep}\n`;
-    mensagem += `📌ENDEREÇO: ${d.endereco}\n`;
-    mensagem += `📌NÚMERO: ${d.numero}\n`;
-    mensagem += `📌BAIRRO: ${d.bairro}\n`;
-    mensagem += `📌CIDADE: ${d.cidade}\n`;
-    mensagem += `📌PONTO DE REFERENCIA: ${d.referencia || 'N/A'}\n`;
-    mensagem += `📌COMPLEMENTO: ${d.complemento || 'N/A'}\n`;
-    mensagem += `📌PLANO ESCOLHIDO: ${d.plano}\n`;
-    mensagem += `📌FORMA DE PAGAMENTO: ${d.pagamento}\n`;
-    mensagem += `📌DATA DE VENCIMENTO: ${d.vencimento}\n`;
-    mensagem += `📌COMO CONHECEU: ${d.conheceu}\n\n`;
-    mensagem += `*Cliente declarou estar de acordo com a LGPD e as informações acima.* ✅`;
+    // Ícones e formatação para o WhatsApp
+    let msg = `*NOVA SOLICITAÇÃO DE CADASTRO* 🚀\n\n`;
+    msg += `👤 *NOME:* ${d.nome}\n`;
+    msg += `📄 *CPF:* ${d.cpf}\n`;
+    msg += `🎂 *NASCIMENTO:* ${d.nascimento.split('-').reverse().join('/')}\n`;
+    msg += `📧 *E-MAIL:* ${d.email}\n`;
+    msg += `📱 *TELEFONE 1:* ${d.tel1}\n`;
+    msg += `📱 *TELEFONE 2:* ${d.tel2 || '--'}\n\n`;
+    msg += `📍 *ENDEREÇO DE INSTALAÇÃO*\n`;
+    msg += `CEP: ${d.cep}\n`;
+    msg += `RUA: ${d.endereco}, Nº ${d.numero}\n`;
+    msg += `BAIRRO: ${d.bairro}\n`;
+    msg += `CIDADE: ${d.cidade}\n`;
+    msg += `COMPLEMENTO: ${d.complemento || '--'}\n`;
+    msg += `REF: ${d.referencia || '--'}\n\n`;
+    msg += `📡 *PLANO:* ${d.plano}\n`;
+    msg += `💰 *INSTALAÇÃO:* ${d.pagamento}\n`;
+    msg += `📅 *VENCIMENTO:* Dia ${d.vencimento}\n`;
+    msg += `🗣️ *CONHECEU:* ${d.conheceu}\n\n`;
+    msg += `✅ *Aceite LGPD Confirmado*`;
 
-    // Número do WhatsApp (apenas números com código do país)
-    const numeroWhats = "5522997295233";
-    const url = `https://api.whatsapp.com/send?phone=${numeroWhats}&text=${encodeURIComponent(mensagem)}`;
-
-    window.open(url, '_blank');
+    // SEU NÚMERO AQUI (Mantenha o 55 e o DDD)
+    const telefone = "5522997295233"; 
+    
+    window.open(`https://api.whatsapp.com/send?phone=${telefone}&text=${encodeURIComponent(msg)}`, '_blank');
 });
