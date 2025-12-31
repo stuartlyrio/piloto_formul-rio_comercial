@@ -17,35 +17,35 @@
             <legend>Dados Pessoais</legend>
             <div class="row">
                 <div class="input-group full">
-                    <label for="nome">NOME COMPLETO</label>
+                    <label for="nome">📌NOME:</label>
                     <input type="text" id="nome" name="nome" required>
                 </div>
             </div>
             <div class="row">
                 <div class="input-group">
-                    <label for="cpf">CPF</label>
+                    <label for="cpf">📌CPF:</label>
                     <input type="text" id="cpf" name="cpf" maxlength="14" placeholder="000.000.000-00" required>
                     <span id="cpf-error" class="error-msg"></span>
                 </div>
                 <div class="input-group">
-                    <label for="nascimento">DATA DE NASCIMENTO</label>
+                    <label for="nascimento">📌DATA DE NASCIMENTO:</label>
                     <input type="date" id="nascimento" name="nascimento" required>
                     <span id="date-error" class="error-msg"></span>
                 </div>
             </div>
             <div class="row">
                 <div class="input-group full">
-                    <label for="email">E-MAIL</label>
+                    <label for="email">📌E-MAIL:</label>
                     <input type="email" id="email" name="email" placeholder="seu@email.com" required>
                 </div>
             </div>
             <div class="row">
                 <div class="input-group">
-                    <label for="tel1">TELEFONE 1</label>
+                    <label for="tel1">📌TELEFONE 1:</label>
                     <input type="tel" id="tel1" name="tel1" maxlength="15" placeholder="(00) 00000-0000" required>
                 </div>
                 <div class="input-group">
-                    <label for="tel2">TELEFONE 2</label>
+                    <label for="tel2">📌TELEFONE 2:</label>
                     <input type="tel" id="tel2" name="tel2" maxlength="15" placeholder="(00) 00000-0000">
                 </div>
             </div>
@@ -55,78 +55,80 @@
             <legend>Endereço de Instalação</legend>
             <div class="row">
                 <div class="input-group">
-                    <label for="cep">CEP</label>
+                    <label for="cep">📌CEP:</label>
                     <input type="text" id="cep" name="cep" maxlength="9" placeholder="00000-000" required>
                 </div>
                 <div class="input-group half">
-                    <label for="endereco">ENDEREÇO (Rua, Avenida, Rodovia)</label>
+                    <label for="endereco">📌ENDEREÇO (Rua, Avenida, Rodovia):</label>
                     <input type="text" id="endereco" name="endereco" required>
                 </div>
                 <div class="input-group small">
-                    <label for="numero">NÚMERO</label>
+                    <label for="numero">📌NÚMERO:</label>
                     <input type="text" id="numero" name="numero" required>
                 </div>
             </div>
             <div class="row">
                 <div class="input-group">
-                    <label for="bairro">BAIRRO</label>
+                    <label for="bairro">📌BAIRRO:</label>
                     <input type="text" id="bairro" name="bairro" required>
                 </div>
                 <div class="input-group">
-                    <label for="cidade">CIDADE</label>
+                    <label for="cidade">📌CIDADE:</label>
                     <input type="text" id="cidade" name="cidade" required>
                 </div>
             </div>
             <div class="row">
-                <div class="input-group">
-                    <label for="referencia">PONTO DE REFERÊNCIA</label>
-                    <input type="text" id="referencia" name="referencia" placeholder="Próximo a igreja, loja, etc.">
+                <div class="input-group full">
+                    <label for="referencia">📌PONTO DE REFERENCIA (proximo a igreja, loja ou mercado,etc.):</label>
+                    <input type="text" id="referencia" name="referencia">
                 </div>
-                <div class="input-group">
-                    <label for="complemento">COMPLEMENTO</label>
-                    <input type="text" id="complemento" name="complemento" placeholder="Cor da casa, prédio, bloco...">
+            </div>
+            <div class="row">
+                <div class="input-group full">
+                    <label for="complemento">📌COMPLEMENTO (qual a cor da casa ou cor do prédio, bloco, quadra, lote. etc):</label>
+                    <input type="text" id="complemento" name="complemento">
                 </div>
             </div>
         </fieldset>
 
         <fieldset>
-            <legend>Informações da Contratação</legend>
+            <legend>Plano e Pagamento</legend>
             <div class="row">
                 <div class="input-group full">
-                    <label for="plano">PLANO ESCOLHIDO</label>
-                    <input type="text" id="plano" name="plano" placeholder="Ex: Fibra 500 Mega" required>
+                    <label for="plano">📌PLANO ESCOLHIDO:</label>
+                    <input type="text" id="plano" name="plano" required>
                 </div>
             </div>
             
-            <label>PAGAMENTO DA TAXA DE INSTALAÇÃO:</label>
+            <label>📌Como deseja efetuar o pagamento da taxa de instalação:</label>
             <div class="radio-group">
                 <label><input type="radio" name="pagamento" value="PIX" required> PIX</label>
                 <label><input type="radio" name="pagamento" value="A vista"> À vista</label>
-                <label><input type="radio" name="pagamento" value="Crédito"> Cartão Crédito</label>
-                <label><input type="radio" name="pagamento" value="Débito"> Cartão Débito</label>
+                <label><input type="radio" name="pagamento" value="Cartão crédito"> Cartão crédito</label>
+                <label><input type="radio" name="pagamento" value="Cartão de débito"> Cartão débito</label>
             </div>
 
-            <label>DATA DE VENCIMENTO:</label>
+            <label>📌DATA DE VENCIMENTO:</label>
             <div class="radio-group">
-                <label><input type="radio" name="vencimento" value="05" required> Dia 05</label>
-                <label><input type="radio" name="vencimento" value="10"> Dia 10</label>
+                <label><input type="radio" name="vencimento" value="05" required> 05</label>
+                <label><input type="radio" name="vencimento" value="10"> 10</label>
             </div>
 
             <div class="input-group full">
-                <label for="como_conheceu">COMO CONHECEU A EMPRESA?</label>
-                <input type="text" id="como_conheceu" name="como_conheceu" placeholder="Amigos, site, Instagram...">
+                <label for="conheceu">📌COMO CONHECEU A EMPRESA (VIZINHOS, AMIGOS, SITE, ETC):</label>
+                <input type="text" id="conheceu" name="conheceu" required>
             </div>
         </fieldset>
 
         <div class="lgpd-box">
-            <p><strong>LGPD:</strong> Os dados acima são utilizados para o seu cadastro e garantir a segurança, afim de possibilitar a emissão do contrato e faturas. São utilizados apenas por esta empresa.</p>
+            <p><strong>-LGPD:</strong> Os dados acima são utilizados para o seu cadastro e garantir a segurança, afim de possibilitar a emissão do contrato e geração de faturas.</p>
             <label class="checkbox-label">
                 <input type="checkbox" id="aceite" name="aceite" required> 
-                Cliente declara estar de acordo com as informações acima.
+                Cliente declara estar de acordo com as informações acima
             </label>
         </div>
 
-        <button type="submit" id="btnEnviar">Finalizar Cadastro</button>
+        <button type="submit">Enviar Dados via WhatsApp</button>
     </form>
 </div>
 

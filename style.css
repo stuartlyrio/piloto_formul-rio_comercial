@@ -1,78 +1,22 @@
-:root {
-    --primary: #2563eb;
-    --error: #dc3545;
-    --success: #28a745;
-    --bg: #f8fafc;
-}
-
-body {
-    font-family: 'Segoe UI', sans-serif;
-    background-color: var(--bg);
-    padding: 20px;
-}
-
-.container {
-    max-width: 850px;
-    margin: 0 auto;
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
-}
-
+:root { --primary: #2563eb; --error: #dc3545; --success: #28a745; --bg: #f8fafc; }
+body { font-family: 'Segoe UI', sans-serif; background-color: var(--bg); padding: 20px; }
+.container { max-width: 850px; margin: 0 auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
 h1 { color: var(--primary); margin-bottom: 5px; }
 .subtitle { color: #64748b; margin-bottom: 25px; }
-
-fieldset {
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 20px;
-}
-
+fieldset { border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; margin-bottom: 20px; }
 legend { font-weight: bold; color: var(--primary); padding: 0 10px; }
-
 .row { display: flex; gap: 15px; margin-bottom: 15px; flex-wrap: wrap; }
 .input-group { flex: 1; min-width: 200px; position: relative; }
 .full { flex: 100%; }
-.half { flex: 2; }
 .small { flex: 0 0 100px; }
-
 label { display: block; font-size: 12px; font-weight: bold; margin-bottom: 5px; color: #475569; }
-
-input[type="text"], input[type="email"], input[type="tel"], input[type="date"] {
-    width: 100%;
-    padding: 10px;
-    border: 2px solid #e2e8f0;
-    border-radius: 6px;
-    outline: none;
-    transition: 0.3s;
-}
-
-/* Estilos de Validação */
+input[type="text"], input[type="email"], input[type="tel"], input[type="date"] { width: 100%; padding: 10px; border: 2px solid #e2e8f0; border-radius: 6px; outline: none; transition: 0.3s; box-sizing: border-box;}
 input.invalid { border-color: var(--error); background-color: #fff5f5; }
 input.valid { border-color: var(--success); }
-
 .error-msg { color: var(--error); font-size: 11px; margin-top: 4px; display: block; height: 12px; }
-
-.radio-group { display: flex; gap: 15px; margin-bottom: 20px; padding: 10px 0; }
+.radio-group { display: flex; gap: 15px; margin-bottom: 20px; padding: 10px 0; flex-wrap: wrap;}
 .radio-group label { font-weight: normal; display: flex; align-items: center; gap: 5px; cursor: pointer; }
-
-.lgpd-box { background: #f1f5f9; padding: 15px; border-radius: 8px; font-size: 13px; border-left: 5px solid var(--primary); }
-
-button {
-    width: 100%;
-    padding: 15px;
-    background: var(--primary);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 20px;
-}
-
-button:hover { background: #1d4ed8; }
-
+.lgpd-box { background: #f1f5f9; padding: 15px; border-radius: 8px; font-size: 13px; border-left: 5px solid var(--primary); margin-bottom: 20px;}
+button { width: 100%; padding: 18px; background: #25d366; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s;}
+button:hover { background: #128c7e; transform: translateY(-2px); }
 @media (max-width: 600px) { .row { flex-direction: column; } .small { flex: 1; } }
